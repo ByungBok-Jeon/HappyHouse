@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.dao.HouseDAO">
+
+	<!-- 매물 전체 조회 -->
+	<select id="selectAllHouse" resultType="house">
+		select sigungu, dong, type, price, name, area, floor, buildyear
+		  from house
+	</select>
+	
+	<!-- 해당 동 매물 전체 조회 -->
+	<select id="selectAllHouseByDong" resultType="house">
+		select sigungu, dong, type, price, name, area, floor, buildyear
+		  from house
+		  where dongcode = #{dongcode}
+	</select>
+	
+	<!-- 아파트 매물 조회 -->
+	<select id="selectApt" resultType="house">
+		select sigungu, dong, type, price, name, area, floor, buildyear
+		  from house
+		  where typecode = 2001
+	</select>
+	
+	<!-- 해당 동 아파트 매물 조회 -->
+	<select id="selectAptByDong" resultType="house">
+		select sigungu, dong, type, price, name, area, floor, buildyear
+		  from house
+		  where typecode = 2001 and dongcode = #{dongcode}
+	</select>
+	
+	<!-- 연립주택 매물 조회 -->
+	<select id="selectRowHouse" resultType="house">
+		select sigungu, dong, type, price, name, area, floor, buildyear
+		  from house
+		  where typecode = 2002
+	</select>
+	
+	<!-- 해당 동 연립주택 매물 조회 -->
+	<select id="selectRowHouseByDong" resultType="house">
+		select sigungu, dong, type, price, name, area, floor, buildyear
+		  from house
+		  where typecode = 2002 and dongcode = #{dongcode}
+	</select>
+	
+	<!-- 단독주택 매물 조회 -->
+	<select id="selectDetachedHouse" resultType="house">
+		select sigungu, dong, type, price, name, area, floor, buildyear
+		  from house
+		  where typecode = 1001
+	</select>
+	
+	<!-- 해당 동 단독주택 매물 조회 -->
+	<select id="selectDetachedHouseByDong" resultType="house">
+		select sigungu, dong, type, price, name, area, floor, buildyear
+		  from house
+		  where typecode = 1001 and dongcode = #{dongcode}
+	</select>
+	
+	<!-- 오피스텔 매물 조회 -->
+	<select id="selcetOfficetel" resultType="house">
+		select sigungu, dong, type, price, name, area, floor, buildyear
+		  from house
+		  where typecode = 14202
+	</select>
+	
+	<!-- 해당 동오피스텔 매물 조회 -->
+	<select id="selcetOfficetelByDong" resultType="house">
+		select sigungu, dong, type, price, name, area, floor, buildyear
+		  from house
+		  where typecode = 14202 and dongcode = #{dongcode}
+	</select>
+	
+	<!-- 매매 시군구코드 동코드 조회 -->
+	<!-- <select id="selectCodes" resultType="house">
+		select distinct sigungu, sigungucode,  dong , dongcode 
+		from house;
+	</select>
+ -->
+</mapper>
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.dao.CodeDAO">
+
+	<!-- 매매 시군구코드 동코드 조회 -->
+	<select id="selectAllHouseCode" resultType="code">
+		select distinct sigungu, sigungucode,  dong , dongcode 
+		from house;
+	</select>
+	
+	<!-- 매매 시군구코드 동코드 조회 -->
+	<select id="selectAllHouseRentCode" resultType="code">
+		select distinct sigungu, sigungucode,  dong , dongcode 
+		from house_rent;
+	</select>
+
+	<!-- 시군구  조회 -->
+	<select id="selectSigunguCode" resultType="code">
+		select distinct sigungu,sigungucode 
+		from house;
+	</select>
+	
+	<!-- 매매 동  조회 -->
+	<select id="selectHouseDongCode" resultType="code">
+		select distinct dong, dongcode 
+		from house
+		where sigungucode = #{sigungucode};
+	</select>
+	
+	<!-- 전월세 동  조회 -->
+	<select id="selectHouseRentDongCode" resultType="code">
+		select distinct dong, dongcode 
+		from house_rent
+		where sigungucode = #{sigungucode};
+	</select>
+	
+	
+</mapper>
+

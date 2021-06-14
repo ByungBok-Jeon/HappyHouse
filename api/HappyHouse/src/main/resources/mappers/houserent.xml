@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.dao.HouseRentDAO">
+
+	<!-- 매물 전체 조회 -->
+	<select id="selectAllHouseRent" resultType="houserent">
+		select sigungu, dong, type, name, renttype, rentprice1, rentprice2, area, floor
+		  from house_rent
+	</select>
+	
+	<!-- 해당 동 매물 전체 조회 -->
+	<select id="selectAllHouseRentByDong" resultType="houserent">
+		select sigungu, dong, type, name, renttype, rentprice1, rentprice2, area, floor
+		  from house_rent
+		  where dongcode = #{dongcode} and sigungucode = #{sigungucode}
+	</select>
+	
+	<!-- 아파트 매물 조회 -->
+	<select id="selectAptRent" resultType="houserent">
+		select sigungu, dong, type, name, renttype, rentprice1, rentprice2, area, floor
+		  from house_rent
+		  where typecode = 1
+	</select>
+	
+	<!-- 해당 동 아파트 매물 조회 -->
+	<select id="selectAptRentByDong" resultType="houserent">
+		select sigungu, dong, type, name, renttype, rentprice1, rentprice2, area, floor
+		  from house_rent
+		  where typecode = 1 and dongcode = #{dongcode} and sigungucode = #{sigungucode}
+	</select>
+	
+	<!-- 연립주택 매물 조회 -->
+	<select id="selectRowHouseRent" resultType="houserent">
+		select sigungu, dong, type, name, renttype, rentprice1, rentprice2, area, floor
+		  from house_rent
+		  where typecode = 4
+	</select>
+	
+	<!-- 해당 동 연립주택 매물 조회 -->
+	<select id="selectRowHouseRentByDong" resultType="houserent">
+		select sigungu, dong, type, name, renttype, rentprice1, rentprice2, area, floor
+		  from house_rent
+		  where typecode = 4 and dongcode = #{dongcode} and sigungucode = #{sigungucode}
+	</select>
+	
+	<!-- 단독주택 매물 조회 -->
+	<select id="selectDetachedHouseRent" resultType="houserent">
+		select sigungu, dong, type, name, renttype, rentprice1, rentprice2, area, floor
+		  from house_rent
+		  where typecode = 2
+	</select>
+	
+	<!-- 해당 동 단독주택 매물 조회 -->
+	<select id="selectDetachedHouseRentByDong" resultType="houserent">
+		select sigungu, dong, type, name, renttype, rentprice1, rentprice2, area, floor
+		  from house_rent
+		  where typecode = 2 and dongcode = #{dongcode} and sigungucode = #{sigungucode}
+	</select>
+	
+	<!-- 오피스텔 매물 조회 -->
+	<select id="selcetOfficetelRent" resultType="houserent">
+		select sigungu, dong, type, name, renttype, rentprice1, rentprice2, area, floor
+		  from house_rent
+		  where typecode = 9
+	</select>
+	
+	<!-- 해당 동오피스텔 매물 조회 -->
+	<select id="selcetOfficetelRentByDong" resultType="houserent">
+		select sigungu, dong, type, name, renttype, rentprice1, rentprice2, area, floor
+		  from house_rent
+		  where typecode = 9 and dongcode = #{dongcode} and sigungucode = #{sigungucode}
+	</select>
+	
+	
+	<!-- 게시글 상세 조회 -->
+	<!-- <select id="selectBoardByNo" resultType="board">
+		select no, title, writer, content, regtime
+		  from vue_board 
+		 where no = #{no}
+	</select> -->
+
+	<!-- 게시글 등록 -->
+	<!-- <insert id="insertBoard" parameterType="board">
+		insert into vue_board(
+			title, writer, content
+		) values (
+			#{title}, #{writer}, #{content}
+		)
+	</insert> -->
+	
+	<!-- 게시글 수정 -->
+	<!-- <update id="updateBoard" parameterType="board">
+		update vue_board 
+		   set title = #{title}, 
+		   	   writer = #{writer}, 
+		   	   content = #{content}
+		 where no = #{no}
+	</update> -->
+
+	<!-- 게시글 삭제 -->
+	<!-- <delete id="deleteBoard" parameterType="int">
+		delete 
+		  from vue_board 
+		 where no = #{no}
+	</delete> -->
+
+</mapper>
+

@@ -1,0 +1,110 @@
+<template>
+  <div class="m-5">
+    <div class="form-group">
+      <label for="writer">작성자</label>
+      <input
+        type="text"
+        class="form-control"
+        id="writer"
+        ref="writer"
+        v-model="writer"
+        readonly="readonly"
+      />
+    </div>
+    <div class="form-group">
+      <label for="title">제목</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        ref="title"
+        placeholder="제목을 입력하세요"
+        v-model="title"
+      />
+    </div>
+    <div class="form-group">
+      <label for="content">내용</label>
+      <textarea
+        type="text"
+        class="form-control"
+        id="contnet"
+        ref="content"
+        placeholder="내용을 입력하세요"
+        v-model="content"
+      ></textarea>
+    </div>
+    <div class="text-right" style="margin-right:10%;">
+      <button class="btn btn-primary" @click="checkHandler">등록</button>
+      <button class="btn btn-primary" @click="moveList">목록</button>
+    </div>
+  </div>
+</template>
+<script>
+import http from '../../http-common5';
+import { mapGetters } from 'vuex';
+export default {
+  name: 'board-Form',
+  data: function() {
+    return {
+      no: '',
+      regtime: '',
+      writer: '',
+      title: '',
+      content: '',
+    };
+  },
+  methods: {
+    checkHandler() {
+      let err = true;
+      let msg = '';
+      !this.writer && ((msg = '작성자를 입력해주세요'), (err = false), this.$refs.writer.focus());
+      err && !this.title && ((msg = '제목 입력해주세요'), (err = false), this.$refs.title.focus());
+      err &&
+        !this.content &&
+        ((msg = '내용 입력해주세요'), (err = false), this.$refs.content.focus());
+
+      if (!err) alert(msg);
+      else this.createHandler();
+    },
+
+    createHandler() {
+      http
+        .post('/board', {
+          writer: this.writer,
+          title: this.title,
+          content: this.content,
+        })
+        .then(({ data }) => {
+          let msg = '등록 처리시 문제가 발생했습니다.';
+          if (data === 'success') {
+            msg = '등록이 완료되었습니다.';
+          }
+          alert(msg);
+          this.moveList();
+        })
+        .catch(() => {
+          alert('등록 처리시 에러가 발생했습니다.');
+        });
+    },
+    moveList() {
+      this.$router.push('/qnaboard');
+    },
+    // created() {
+    //   this.writer = this.getProfile;
+    // },
+  },
+  computed: {
+    ...mapGetters(['getProfile']),
+  },
+  mounted() {
+    this.writer = this.getProfile;
+  },
+};
+</script>
+
+<style scoped>
+.form-group {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+</style>
